@@ -8,9 +8,11 @@ const pkg      = require('./package.json')
 
 const file = 'readme.md'
 
-const snippetMatcher = /```(js|javascript)[\s\S]+?```/g
-
-const removeMdCodeWrap = s => s.replace(/```/g, '').replace(/^(js|javascript)/, '')
+// This regex matches:
+//   ```(?:js|javascript): start of snippet with non-capturing group
+//   ([\s\S]+?): snippet code in captrouring group with non-greedy wildcard
+//   ```: end of snippet
+const snippetMatcher = /```(?:js|javascript)([\s\S]+?)```/g
 
 // dependency :: String -> String|{path: String} -> String
 const dependency = (dep, path) => typeof path === 'string'
@@ -51,9 +53,19 @@ const snippetTask = (code, i) =>
 const count = { success: 0, reject: 0 }
 const notFoundMsg = `\nNo JS snippets found ${file}.  ¯\\_(ツ)_/¯`
 
+const extractSnippets = file => {
+  const snippets = []
+
+  let match = null
+  while (match = snippetMatcher.exec(file)) {
+    snippets.push(match[1])
+  }
+
+  return snippets
+}
+
 read(file)
-  .map(R.match(snippetMatcher))
-  .map(R.map(removeMdCodeWrap))
+  .map(extractSnippets)
   .map(R.map(snippetTask))
   .map(tasks => {
 

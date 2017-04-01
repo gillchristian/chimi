@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bar": {
+      "path": "./bar"
+    },
+    "foo": "./foo"
+  },
+  "file": "example.md",
+  "timeout": 1
+}

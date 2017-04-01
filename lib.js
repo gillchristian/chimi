@@ -5,8 +5,7 @@ const Task         = require('data.task')
 const { List }     = require('immutable-ext')
 
 const { readFile } = require('./utils')
-const { snipper }  = require('./package.json')
-const defaults     = require('./defaults')
+const config       = require('./config')
 
 // This regex matches:
 //   ```(?:js|javascript): start of snippet with non-capturing group
@@ -41,7 +40,7 @@ const listDependencies = (deps) => Object
 // runSnippet :: String -> Int -> Task
 const runSnippet = (code) => isolated(`
   // snippet dependencies
-  ${listDependencies(snipper.dependencies || [])}
+  ${listDependencies(config.dependencies || [])}
 
   function snippet() {
     return new Promise((res, rej) => {
@@ -67,7 +66,7 @@ const snippetTask = ({code, id}) =>
           finished = true
           resolve({error: new Error('Timeout'), ok: false, id})
         }
-      }, (snipper.timeout || defaults.timeout) * 1000)
+      }, config.timeout * 1000)
 
       runSnippet(code)
         .then(value => {

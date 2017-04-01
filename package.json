@@ -1,8 +1,7 @@
 {
-  "name": "functional",
-  "version": "1.0.0",
-  "description": "- Why functional?   - because JS can (functions are first class citizens)   - immutability   - reuse just what you need   - its safe   - looks good (and that's good)   - testing pure functions is easy peasy :metal:   - it is fun :D - Inheritance vs. Composition :muscle: - Functional methods: the bad, the good, the awesome - Libs   - [Rambda](http://ramdajs.com/) :metal:   - [Folktale](http://folktalejs.org/) :nerd: - Resources   - [awesome functional programming](https://github.com/xgrommx/awesome-functional-programming)   - [awesome fp js](https://github.com/stoeffel/awesome-fp-js)   - [workshop](https://github.com/timoxley/functional-javascript-workshop). _beginners_ - Real world usage examples   - React & Redux :thinking:   - Node",
-  "main": "basic.every-some.js",
+  "name": "snipperjs",
+  "version": "0.0.1",
+  "description": "Run JavaScript snippets from your markdown files",
   "bin": {
     "snipper": "./bin.js"
   },
@@ -22,8 +21,7 @@
     "ora": "^1.2.0",
     "ramda": "^0.23.0",
     "require-from-string": "^1.2.1",
-    "rxjs-es": "^5.0.0-beta.12",
-    "trae": "^1.3.0"
+    "rxjs-es": "^5.0.0-beta.12"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",

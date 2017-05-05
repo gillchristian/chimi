@@ -23,6 +23,7 @@
     "immutable": "^3.8.1",
     "immutable-ext": "^1.0.8",
     "intercept-stdout": "^0.1.2",
+    "meow": "^3.7.0",
     "ora": "^1.2.0",
     "pluralize": "^4.0.0",
     "ramda": "^0.23.0",

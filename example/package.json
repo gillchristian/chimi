@@ -8,5 +8,12 @@
   },
   "dependencies": {
     "trae": "^1.4.1"
+  },
+  "chimi": {
+    "dependencies": {
+      "./add": "add",
+      "trae": "trae"
+    },
+    "file": "readme.md"
   }
 }

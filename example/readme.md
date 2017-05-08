@@ -2,6 +2,18 @@
 
 this is an example project using `chimi` to test Markdown snippets
 
+## run example
+
+`chimi` uses a config file, by default it will look for `.chimirc` but you can indicate other file.
+
+```bash
+$ npm test                       # uses .chimirc
+$ npm test -- -c chimi.json      # uses chimi.json
+$ npm test -- -c chimi.config.js # uses exported object from chimi.config.js
+$ npm test -- -c package.json    # uses the property "chimi" from package.json
+```
+
+
 ## snippets
 
 ```javascript

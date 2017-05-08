@@ -8,7 +8,7 @@
 
 ## Configuration
 
-To let `chimi` find the snippets you have to indicate the code snippet language using either `js` or `javascript` like so:
+To let `chimi` find the snippets you have to indicate the snippet language using either `js` or `javascript` like so:
 
 ```
 ```js
@@ -18,7 +18,7 @@ To let `chimi` find the snippets you have to indicate the code snippet language 
 ```javascript
 ```
 
-You can configure `chimi` through an `rc` file, `.chimirc`:
+You can configure `chimi` using a configuration file, it might be a JSON or JavaScript file and also an object as the `chimi` property in the `package.json`:
 
 ```
 {
@@ -33,6 +33,7 @@ You can configure `chimi` through an `rc` file, `.chimirc`:
 }
 ```
 _NOTE_: _the `.chimirc` file has to be a valid JSON_.
+_NOTE_: _if it is a JavaScript file, an object has to be exported_.
 
 `dependencies`: `object`
 

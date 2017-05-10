@@ -29,8 +29,14 @@ const cli = meow(msg, {
 })
 
 const runner = require('../lib/runner')
-const config = require('../lib/config')(cli.flags.config)
+const configEither = require('../lib/config')(cli.flags.config)
 
+if (configEither.isLeft) {
+  console.error(configEither.merge())
+  process.exit(1)
+}
+
+const config = configEither.get()
 const file = cli.flags.file || config.file
 
 runner(config.dependencies, config.timeout, file)

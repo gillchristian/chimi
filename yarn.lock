@@ -312,6 +312,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
+data.either@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/data.either/-/data.either-1.5.0.tgz#b838ff92b65206c58baf48d48cc23a07f3859ce2"
+
 data.task@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/data.task/-/data.task-3.1.1.tgz#e985f5bedadd926b2d63c1a5d2076cff917a52ad"

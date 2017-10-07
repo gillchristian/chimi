@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib injectDependencies local dependency 1`] = `
+"// snippet dependencies
+let lib = require('./lib');
+
+const answer = 42
+
+console.log(answer)"
+`;
+
+exports[`lib injectDependencies no dependencies 1`] = `
+"// snippet dependencies
+
+
+const answer = 42
+
+console.log(answer)"
+`;
+
+exports[`lib injectDependencies one dependency 1`] = `
+"// snippet dependencies
+let _ = require('lodash');
+
+const answer = 42
+
+console.log(answer)"
+`;
+
+exports[`lib injectDependencies two dependencies 1`] = `
+"// snippet dependencies
+let _ = require('lodash');
+let trae = require('trae');
+
+const answer = 42
+
+console.log(answer)"
+`;

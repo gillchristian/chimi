@@ -11,10 +11,7 @@ console.log(answer)"
 `;
 
 exports[`lib injectDependencies should not change the input when no dependencies are passed 1`] = `
-"// snippet dependencies
-
-
-const answer = 42
+"const answer = 42
 
 console.log(answer)"
 `;

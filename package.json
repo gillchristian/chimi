@@ -7,7 +7,7 @@
   },
   "scripts": {
     "prettier": "prettier --no-semi --single-quote --trailing-comma es5",
-    "format": "npm run prettier -- --write 'lib/**/*.js' && npm run prettier -- --write 'bin/**/*.js'",
+    "format": "npm run prettier -- --write '{bin,lib,tests}/**/*.js'",
     "precommit": "lint-staged",
     "release": "np",
     "test": "jest"

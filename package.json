@@ -46,11 +46,7 @@
     "prettier": "^1.3.1"
   },
   "lint-staged": {
-    "bin/**/*.js": [
-      "npm run prettier -- --write",
-      "git add"
-    ],
-    "lib/**/*.js": [
+    "{bin,lib,tests}/**/*.js": [
       "npm run prettier -- --write",
       "git add"
     ]

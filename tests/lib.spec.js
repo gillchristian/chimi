@@ -9,35 +9,44 @@ describe('lib', () => {
       console.log(answer)
     `
 
-    test('no dependencies', () => {
+    it('should not change the input when no dependencies are passed', () => {
       const dependencies = {}
       const result = injectDependencies(dependencies, code)
 
       expect(result).toMatchSnapshot()
     })
 
-    test('one dependency', () => {
-      const dependencies = {
+    it('should prepend requires with variable declarations to the input', () => {
+      let dependencies = {
         lodash: '_',
       }
-      const result = injectDependencies(dependencies, code)
+      let result = injectDependencies(dependencies, code)
 
       expect(result).toMatchSnapshot()
-    })
 
-    test('two dependencies', () => {
-      const dependencies = {
+      dependencies = {
         lodash: '_',
         trae: 'trae',
       }
+      result = injectDependencies(dependencies, code)
+
+      expect(result).toMatchSnapshot()
+    })
+
+    it('should work for local dependencies', () => {
+      const dependencies = {
+        './lib': 'lib',
+        '../foo/bar': 'bar',
+      }
       const result = injectDependencies(dependencies, code)
 
       expect(result).toMatchSnapshot()
     })
 
-    test('local dependency', () => {
+    it('should not add a variable declaration when values are falsy', () => {
       const dependencies = {
-        './lib': 'lib',
+        './for-the-side-effects': false,
+        'es6-promise': false,
       }
       const result = injectDependencies(dependencies, code)
 

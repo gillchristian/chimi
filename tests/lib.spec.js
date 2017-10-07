@@ -16,6 +16,32 @@ describe('lib', () => {
       expect(result).toMatchSnapshot()
     })
 
+    const withIndentation = stripIndent`
+      const foo = {
+        bar: "bar"
+      };
+
+      Promise.resolve(foo)
+        .then(({ bar }) => bar)
+        .then(bar => {
+          console.log(bar);
+        });
+    `
+
+    it('should not change snippet indentation', () => {
+      let result = injectDependencies({}, withIndentation)
+
+      expect(result).toMatchSnapshot()
+
+      const dependencies = {
+        lodash: '_',
+        './lib': 'lib',
+      }
+      result = injectDependencies(dependencies, withIndentation)
+
+      expect(result).toMatchSnapshot()
+    })
+
     it('should prepend requires with variable declarations to the input', () => {
       let dependencies = {
         lodash: '_',

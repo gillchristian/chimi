@@ -4,10 +4,36 @@ exports[`lib injectDependencies should not add a variable declaration when value
 "// snippet dependencies
 require('./for-the-side-effects');
 require('es6-promise');
-
 const answer = 42
 
 console.log(answer)"
+`;
+
+exports[`lib injectDependencies should not change snippet indentation 1`] = `
+"const foo = {
+  bar: \\"bar\\"
+};
+
+Promise.resolve(foo)
+  .then(({ bar }) => bar)
+  .then(bar => {
+    console.log(bar);
+  });"
+`;
+
+exports[`lib injectDependencies should not change snippet indentation 2`] = `
+"// snippet dependencies
+let _ = require('lodash');
+let lib = require('./lib');
+const foo = {
+  bar: \\"bar\\"
+};
+
+Promise.resolve(foo)
+  .then(({ bar }) => bar)
+  .then(bar => {
+    console.log(bar);
+  });"
 `;
 
 exports[`lib injectDependencies should not change the input when no dependencies are passed 1`] = `
@@ -19,7 +45,6 @@ console.log(answer)"
 exports[`lib injectDependencies should prepend requires with variable declarations to the input 1`] = `
 "// snippet dependencies
 let _ = require('lodash');
-
 const answer = 42
 
 console.log(answer)"
@@ -29,7 +54,6 @@ exports[`lib injectDependencies should prepend requires with variable declaratio
 "// snippet dependencies
 let _ = require('lodash');
 let trae = require('trae');
-
 const answer = 42
 
 console.log(answer)"
@@ -39,7 +63,6 @@ exports[`lib injectDependencies should work for local dependencies 1`] = `
 "// snippet dependencies
 let lib = require('./lib');
 let bar = require('../foo/bar');
-
 const answer = 42
 
 console.log(answer)"

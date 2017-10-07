@@ -7,10 +7,10 @@ describe('lib', () => {
       const answer = 42
 
       console.log(answer)
-    `.trim();
+    `
 
     test('no dependencies', () => {
-      const dependencies = {};
+      const dependencies = {}
       const result = injectDependencies(dependencies, code)
 
       expect(result).toMatchSnapshot()
@@ -18,8 +18,8 @@ describe('lib', () => {
 
     test('one dependency', () => {
       const dependencies = {
-        lodash: '_'
-      };
+        lodash: '_',
+      }
       const result = injectDependencies(dependencies, code)
 
       expect(result).toMatchSnapshot()
@@ -28,8 +28,8 @@ describe('lib', () => {
     test('two dependencies', () => {
       const dependencies = {
         lodash: '_',
-        trae: 'trae'
-      };
+        trae: 'trae',
+      }
       const result = injectDependencies(dependencies, code)
 
       expect(result).toMatchSnapshot()
@@ -37,11 +37,11 @@ describe('lib', () => {
 
     test('local dependency', () => {
       const dependencies = {
-        './lib': 'lib'
-      };
+        './lib': 'lib',
+      }
       const result = injectDependencies(dependencies, code)
 
       expect(result).toMatchSnapshot()
     })
   })
-});
+})

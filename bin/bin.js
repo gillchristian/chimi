@@ -2,10 +2,10 @@
 const meow = require('meow')
 const chalk = require('chalk')
 
-const runner = require('../lib/runner')
-const readConfig = require('../lib/config')
 // sanctuary with Fluture types added
 const S = require('../lib/sanctuary')
+const runner = require('../lib/runner')
+const readConfig = require('../lib/config')
 
 const msg = `
   ${chalk.bold.white('Usage')}
@@ -47,7 +47,6 @@ if (eitherConfig.isLeft) {
 }
 
 const config = S.either(S.I, S.I, eitherConfig)
-
 const file = cli.flags.file || config.file
 
 runner(config.dependencies, config.timeout, file, cli.flags.silent)

@@ -31,8 +31,6 @@
     "common-tags": "^1.4.0",
     "fluture": "^7.1.3",
     "fluture-sanctuary-types": "^1.3.0",
-    "immutable": "^3.8.1",
-    "immutable-ext": "^1.0.8",
     "meow": "^3.7.0",
     "ora": "^1.2.0",
     "pluralize": "^4.0.0",

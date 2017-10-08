@@ -13,13 +13,10 @@ $ npm test -- -c chimi.config.js # uses exported object from chimi.config.js
 $ npm test -- -c package.json    # uses the property "chimi" from package.json
 ```
 
-
 ## snippets
-
 
 ```javascript
 ```
-
 
 ```js
 const foo = {
@@ -53,8 +50,8 @@ trae.get('people/1')
 
 This snippet will not finish running. _The default timeout is 5s_.
 
-```js
+```javascript
 setTimeout(() => {
   console.log('I will never run')
 }, 10 * 1000)
-
+```

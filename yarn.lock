@@ -709,14 +709,6 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-data.either@^1.5.0:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/data.either/-/data.either-1.5.1.tgz#71f9dbfc8fe3ab0112e52e443470bcd526f50b47"
-
-data.task@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/data.task/-/data.task-3.1.1.tgz#e985f5bedadd926b2d63c1a5d2076cff917a52ad"
-
 date-fns@^1.27.2:
   version "1.28.5"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.28.5.tgz#257cfc45d322df45ef5658665967ee841cd73faf"
@@ -2916,6 +2908,13 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
 sanctuary-def@0.12.1:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/sanctuary-def/-/sanctuary-def-0.12.1.tgz#bb9b2ad9407b1519d1ee61fd293b24e86a2044b3"
+  dependencies:
+    sanctuary-type-classes "6.0.x"
+    sanctuary-type-identifiers "2.0.x"
+
+sanctuary-def@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/sanctuary-def/-/sanctuary-def-0.13.1.tgz#46c5b2f0616f0fbd835754c1a6ee1330ef6466dc"
   dependencies:
     sanctuary-type-classes "6.0.x"
     sanctuary-type-identifiers "2.0.x"

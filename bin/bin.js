@@ -2,6 +2,11 @@
 const meow = require('meow')
 const chalk = require('chalk')
 
+const runner = require('../lib/runner')
+const readConfig = require('../lib/config')
+// sanctuary with Fluture types added
+const S = require('../lib/sanctuary')
+
 const msg = `
   ${chalk.bold.white('Usage')}
   $ chimi -f <file> -c <config-file>
@@ -34,15 +39,15 @@ const cli = meow(msg, {
   },
 })
 
-const runner = require('../lib/runner')
-const eitherConfig = require('../lib/config')(cli.flags.config)
+const eitherConfig = readConfig(cli.flags.config)
 
 if (eitherConfig.isLeft) {
-  console.error(eitherConfig.merge())
+  console.error(S.either(S.I, S.I, eitherConfig))
   process.exit(1)
 }
 
-const config = eitherConfig.get()
+const config = S.either(S.I, S.I, eitherConfig)
+
 const file = cli.flags.file || config.file
 
 runner(config.dependencies, config.timeout, file, cli.flags.silent)

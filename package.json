@@ -36,7 +36,9 @@
     "pluralize": "^4.0.0",
     "ramda": "^0.23.0",
     "sanctuary": "^0.13.2",
-    "sanctuary-def": "^0.13.1"
+    "sanctuary-def": "^0.13.1",
+    "source-map": "^0.6.1",
+    "source-map-support": "^0.5.0"
   },
   "devDependencies": {
     "husky": "^0.13.3",

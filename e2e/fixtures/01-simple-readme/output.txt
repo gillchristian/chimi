@@ -1,0 +1,13 @@
+
+Output
+
+// ----- README.md ----- 
+
+// --- Snippet #0 in README.md ---
+42
+
+
+ PASS  0-README.md
+
+  Files: 1
+  Snippets succeded: 1

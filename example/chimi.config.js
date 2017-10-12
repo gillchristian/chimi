@@ -1,7 +1,7 @@
 module.exports = {
-  "dependencies": {
-    "./add": "add",
-    "trae": "trae"
+  dependencies: {
+    './add': 'add',
+    trae: 'trae',
   },
-  "file": "readme.md"
+  file: 'readme.md',
 }

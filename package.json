@@ -29,6 +29,7 @@
     "chalk": "^1.1.3",
     "chipa": "^0.1.1",
     "common-tags": "^1.4.0",
+    "cosmiconfig": "^3.1.0",
     "fluture": "^7.1.3",
     "fluture-sanctuary-types": "^1.3.0",
     "meow": "^3.7.0",

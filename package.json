@@ -9,6 +9,7 @@
     "build": "babel src/ -d lib/ && yarn format",
     "prettier": "prettier --no-semi --single-quote --trailing-comma es5 --parser flow",
     "format": "yarn prettier --write '**/*.js'",
+    "flow": "flow",
     "precommit": "yarn check && yarn build && lint-staged",
     "prepublish": "yarn build",
     "release": "np",

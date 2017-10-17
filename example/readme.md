@@ -15,9 +15,6 @@ $ npm test -- -c package.json    # uses the property "chimi" from package.json
 
 ## snippets
 
-```javascript
-```
-
 ```js
 const foo = {
   bar: 'bar'
@@ -37,7 +34,7 @@ add(1, 2)
 ```
 
 Using a third party dependency (from `npm`)
-```javascript
+```js
 trae.baseUrl('http://swapi.co/api/')
 
 trae.after(r => r.data)
@@ -53,5 +50,5 @@ This snippet will not finish running. _The default timeout is 5s_.
 ```javascript
 setTimeout(() => {
   console.log('I will never run')
-}, 10 * 1000)
+}, 5.5 * 1000)
 ```

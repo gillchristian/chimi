@@ -7,7 +7,6 @@
   },
   "scripts": {
     "build": "babel src/ -d lib/ && yarn format",
-    "check": "yarn flow check",
     "prettier": "prettier --no-semi --single-quote --trailing-comma es5 --parser flow",
     "format": "yarn prettier --write '**/*.js'",
     "precommit": "yarn check && yarn build && lint-staged",

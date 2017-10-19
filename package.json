@@ -13,7 +13,8 @@
     "precommit": "yarn check && yarn build && lint-staged",
     "prepublish": "yarn build",
     "release": "np",
-    "test": "jest"
+    "test": "jest ./tests",
+    "e2e": "jest ./e2e"
   },
   "author": "gillchristian <gillchristiang@gmail.com>",
   "contributors": [

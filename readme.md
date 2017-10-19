@@ -24,11 +24,10 @@ $ npm i -g chimi
   Run JavaScript snippets from your markdown files
 
   Usage
-  $ chimi -f <file> -c <config-file>
+  $ chimi -f <file>
 
   Options
     --file,    -f      File or glob matching multiple files (default: "README.md")
-    --config,  -c      Use configuration from this file     (default: ".chimirc")
     --help,    -h      Show help
     --silent           Prevent snippets from printing messages through the console
     --version, -v, -V  Show version
@@ -37,8 +36,6 @@ $ npm i -g chimi
     $ chimi -f README.md
 
     $ chimi -f doc/*.md
-
-    $ chimi -c chimi.config.js
 ```
 
 ## Configuration
@@ -57,7 +54,7 @@ You can configure `chimi` using a configuration file, it might be a JSON or Java
 
 ```
 {
-  "dependencies": { 
+  "dependencies": {
     "trae": "trae",
     "lodash": "_",
     "./config": "config",

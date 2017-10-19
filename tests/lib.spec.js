@@ -9,26 +9,24 @@ describe('lib', () => {
       console.log(answer)
     `
 
-    it('should not change the input when no dependencies are passed', () => {
-      const dependencies = {}
-      const result = injectDependencies(dependencies, code)
+    it('should only add the source maps code when no dependencies are passed', () => {
+      const result = injectDependencies({}, code)
 
       expect(result).toMatchSnapshot()
     })
 
-    const withIndentation = stripIndent`
-      const foo = {
-        bar: "bar"
-      };
-
-      Promise.resolve(foo)
-        .then(({ bar }) => bar)
-        .then(bar => {
-          console.log(bar);
-        });
-    `
-
     it('should not change snippet indentation', () => {
+      const withIndentation = stripIndent`
+        const foo = {
+          bar: "bar"
+        };
+
+        Promise.resolve(foo)
+          .then(({ bar }) => bar)
+          .then(bar => {
+            console.log(bar);
+          });
+      `
       let result = injectDependencies({}, withIndentation)
 
       expect(result).toMatchSnapshot()
@@ -69,7 +67,7 @@ describe('lib', () => {
       expect(result).toMatchSnapshot()
     })
 
-    it('should not add a variable declaration when values are falsy', () => {
+    it('should not add a variable declaration when dependencies map values are falsy', () => {
       const dependencies = {
         './for-the-side-effects': false,
         'es6-promise': false,

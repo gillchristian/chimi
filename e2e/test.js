@@ -17,10 +17,14 @@ describe('e2e tests', () => {
     it(`should run ${relativeFixtureDir} as expected`, () => {
       shell.cd(fixtureDir)
 
-      const execution = shell.exec(`node ${chimiBin}`, { silent: true })
-      const result = [execution.code, execution.stdout]
+      const expectationsFile = path.join(fixtureDir, 'expectations.json')
+      const expectations = JSON.parse(fs.readFileSync(expectationsFile))
 
-      expect(result).toMatchSnapshot()
+      const execution = shell.exec(`node ${chimiBin}`, { silent: true })
+      const { code, stdout } = execution
+
+      expect(code).toEqual(expectations.status)
+      expect(stdout).toMatchSnapshot()
     })
   }
 })

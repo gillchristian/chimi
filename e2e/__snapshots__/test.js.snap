@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`e2e tests should run 01-simple-readme as expected 1`] = `
-Array [
-  0,
-  "
+"
 Output
 
 // ----- README.md ----- 
@@ -16,6 +14,5 @@ Output
 
   Files: 1
   Snippets succeded: 1
-",
-]
+"
 `;

@@ -76,5 +76,26 @@ describe('lib', () => {
 
       expect(result).toMatchSnapshot()
     })
+
+    it('should add constants', () => {
+      const constants = {
+        answer: 42,
+      }
+      const result = injectDependencies({}, constants, code)
+
+      expect(result).toMatchSnapshot()
+    })
+
+    it('should add constants and dependencies', () => {
+      const dependencies = {
+        lodash: '_',
+      }
+      const constants = {
+        answer: 42,
+      }
+      const result = injectDependencies(dependencies, constants, code)
+
+      expect(result).toMatchSnapshot()
+    })
   })
 })

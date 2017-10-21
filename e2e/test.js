@@ -14,14 +14,14 @@ const fixturesDirs = fs
 describe('e2e tests', () => {
   for (let fixtureDir of fixturesDirs) {
     const relativeFixtureDir = path.relative(fixturesRoot, fixtureDir)
+
     it(`should run ${relativeFixtureDir} as expected`, () => {
       shell.cd(fixtureDir)
 
-      const expectationsFile = path.join(fixtureDir, 'expectations.json')
-      const expectations = JSON.parse(fs.readFileSync(expectationsFile))
+      const expectations = require(path.join(fixtureDir, 'expectations.json'))
+      const command = `${chimiBin} ${expectations.arguments || ''}`
 
-      const execution = shell.exec(`node ${chimiBin}`, { silent: true })
-      const { code, stdout } = execution
+      const { code, stdout } = shell.exec(command, { silent: true })
 
       expect(code).toEqual(expectations.status)
       expect(stdout).toMatchSnapshot()

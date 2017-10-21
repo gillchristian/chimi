@@ -10,7 +10,7 @@ describe('lib', () => {
     `
 
     it('should only add the source maps code when no dependencies are passed', () => {
-      const result = injectDependencies({}, code)
+      const result = injectDependencies({}, {}, code)
 
       expect(result).toMatchSnapshot()
     })
@@ -27,7 +27,7 @@ describe('lib', () => {
             console.log(bar);
           });
       `
-      let result = injectDependencies({}, withIndentation)
+      let result = injectDependencies({}, {}, withIndentation)
 
       expect(result).toMatchSnapshot()
 
@@ -35,7 +35,7 @@ describe('lib', () => {
         lodash: '_',
         './lib': 'lib',
       }
-      result = injectDependencies(dependencies, withIndentation)
+      result = injectDependencies(dependencies, {}, withIndentation)
 
       expect(result).toMatchSnapshot()
     })
@@ -44,7 +44,7 @@ describe('lib', () => {
       let dependencies = {
         lodash: '_',
       }
-      let result = injectDependencies(dependencies, code)
+      let result = injectDependencies(dependencies, {}, code)
 
       expect(result).toMatchSnapshot()
 
@@ -52,7 +52,7 @@ describe('lib', () => {
         lodash: '_',
         trae: 'trae',
       }
-      result = injectDependencies(dependencies, code)
+      result = injectDependencies(dependencies, {}, code)
 
       expect(result).toMatchSnapshot()
     })
@@ -62,7 +62,7 @@ describe('lib', () => {
         './lib': 'lib',
         '../foo/bar': 'bar',
       }
-      const result = injectDependencies(dependencies, code)
+      const result = injectDependencies(dependencies, {}, code)
 
       expect(result).toMatchSnapshot()
     })
@@ -72,7 +72,7 @@ describe('lib', () => {
         './for-the-side-effects': false,
         'es6-promise': false,
       }
-      const result = injectDependencies(dependencies, code)
+      const result = injectDependencies(dependencies, {}, code)
 
       expect(result).toMatchSnapshot()
     })

@@ -16,3 +16,20 @@ Output
   Snippets succeded: 1
 "
 `;
+
+exports[`e2e tests should run 02-use-constants as expected 1`] = `
+"
+Output
+
+// ----- README.md ----- 
+
+// --- Snippet #0 in README.md ---
+42
+
+
+ PASS  0-README.md
+
+  Files: 1
+  Snippets succeded: 1
+"
+`;

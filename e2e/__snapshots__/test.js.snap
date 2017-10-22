@@ -62,3 +62,38 @@ Output
   Snippets succeded: 2
 "
 `;
+
+exports[`e2e tests should run 05-simple-fail as expected 1`] = `
+"
+Output
+
+----- README.md ----- 
+
+
+Errors
+
+----- README.md ----- 
+
+--- Snippet #1 ---
+
+/snippet.js:1
+console.log(answer)
+^
+ReferenceError: answer is not defined
+    at Object.<anonymous> (/snippet.js:1:1)
+    at Module._compile (module.js:624:30)
+    at Object.Module._extensions..js (module.js:635:10)
+    at Module.load (module.js:545:32)
+    at tryModuleLoad (module.js:508:12)
+    at Function.Module._load (module.js:500:3)
+    at Function.Module.runMain (module.js:665:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:607:3
+
+
+ FAIL  0-README.md
+
+  Files: 1
+  Snippets rejected: 1
+"
+`;

@@ -17,7 +17,7 @@ Output
 "
 `;
 
-exports[`e2e tests should run 02-multiple-files as expected 1`] = `
+exports[`e2e tests should run 03-multiple-files as expected 1`] = `
 "
 Output
 
@@ -41,7 +41,7 @@ Output
 "
 `;
 
-exports[`e2e tests should run 03-multiple-snippets as expected 1`] = `
+exports[`e2e tests should run 04-multiple-snippets as expected 1`] = `
 "
 Output
 

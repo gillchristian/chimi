@@ -37,14 +37,12 @@ const listOutput = results => {
   console.log(chalk.bold.white(`\nOutput\n`))
 
   results.forEach(({ file, snippets }) => {
-    console.log(chalk.bold.white(`// ----- ${file} ----- \n`))
+    console.log(chalk.bold.white(`----- ${file} ----- \n`))
 
     snippets
       .filter(R.compose(Boolean, R.path(['stdout', 'length'])))
       .forEach((c, i) => {
-        console.log(
-          chalk.white(`// --- Snippet #${c.id} in ${chalk.bold(file)} ---`)
-        )
+        console.log(chalk.white(`--- Snippet #${c.id + 1} ---`))
         console.log(chalk.white(c.stdout))
         console.log()
       })
@@ -56,14 +54,12 @@ const listErrors = (results, file) => {
   console.log(chalk.bold.red(`\nErrors\n`))
 
   results.forEach(({ file, snippets }) => {
-    console.log(chalk.bold.white(`// ----- ${file} ----- \n`))
+    console.log(chalk.bold.white(`----- ${file} ----- \n`))
 
     snippets.filter(R.compose(R.not, R.prop('ok'))).forEach((c, i) => {
-      console.log(
-        chalk.white(`// --- Snippet #${c.id} in ${chalk.bold(file)} ---`)
-      )
+      console.log(chalk.white(`--- Snippet #${c.id + 1} ---`))
       if (c.timeout) {
-        const err = new Error(`Snippet #${c.id} in ${file} timed out.`)
+        const err = new Error(`Snippet #${c.id + 1} from ${file} timed out.`)
         console.log(chalk.red(err))
       } else {
         console.log(chalk.red(c.stderr))

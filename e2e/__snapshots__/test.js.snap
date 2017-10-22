@@ -40,3 +40,25 @@ Output
   Snippets succeded: 2
 "
 `;
+
+exports[`e2e tests should run 03-multiple-snippets as expected 1`] = `
+"
+Output
+
+----- README.md ----- 
+
+--- Snippet #1 ---
+42
+
+
+--- Snippet #2 ---
+3
+
+
+ PASS  0-README.md
+ PASS  1-README.md
+
+  Files: 1
+  Snippets succeded: 2
+"
+`;

@@ -4,9 +4,9 @@ exports[`e2e tests should run 01-simple-readme as expected 1`] = `
 "
 Output
 
-// ----- README.md ----- 
+----- README.md ----- 
 
-// --- Snippet #0 in README.md ---
+--- Snippet #1 ---
 42
 
 
@@ -14,5 +14,29 @@ Output
 
   Files: 1
   Snippets succeded: 1
+"
+`;
+
+exports[`e2e tests should run 02-multiple-files as expected 1`] = `
+"
+Output
+
+----- DOCS.md ----- 
+
+--- Snippet #1 ---
+42
+
+
+----- README.md ----- 
+
+--- Snippet #1 ---
+42
+
+
+ PASS  0-DOCS.md
+ PASS  0-README.md
+
+  Files: 2
+  Snippets succeded: 2
 "
 `;

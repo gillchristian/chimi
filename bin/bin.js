@@ -40,7 +40,7 @@ const file = cli.flags.file || config.file
 
 runner(
   config.dependencies,
-  config.constants,
+  config.globals,
   config.timeout,
   file,
   cli.flags.silent

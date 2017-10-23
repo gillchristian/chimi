@@ -77,23 +77,35 @@ describe('lib', () => {
       expect(result).toMatchSnapshot()
     })
 
-    it('should add constants', () => {
-      const constants = {
-        answer: 42,
+    it('should add globals', () => {
+      const globals = {
+        theAnswer: 42,
       }
-      const result = injectDependencies({}, constants, code)
+      const result = injectDependencies({}, globals, code)
 
       expect(result).toMatchSnapshot()
     })
 
-    it('should add constants and dependencies', () => {
+    it('should add globals and dependencies', () => {
       const dependencies = {
         lodash: '_',
       }
-      const constants = {
-        answer: 42,
+      const globals = {
+        theAnswer: 42,
       }
-      const result = injectDependencies(dependencies, constants, code)
+      const result = injectDependencies(dependencies, globals, code)
+
+      expect(result).toMatchSnapshot()
+    })
+
+    it('should interpolate functions, arrays, objets and strings properly', () => {
+      const globals = {
+        add: '(a, b) => a + b',
+        message: "'hello world'",
+        foo: "{ foo: 'bar' }",
+        fruits: "['orange', 'apple']",
+      }
+      const result = injectDependencies({}, globals, code)
 
       expect(result).toMatchSnapshot()
     })

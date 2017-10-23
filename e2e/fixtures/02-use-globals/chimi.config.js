@@ -1,5 +1,5 @@
 module.exports = {
-  constants: {
+  globals: {
     answer: 42,
   },
 }

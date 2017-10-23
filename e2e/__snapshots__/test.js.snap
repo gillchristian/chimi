@@ -17,7 +17,7 @@ Output
 "
 `;
 
-exports[`e2e tests should run 02-use-constants as expected 1`] = `
+exports[`e2e tests should run 02-use-globals as expected 1`] = `
 "
 Output
 

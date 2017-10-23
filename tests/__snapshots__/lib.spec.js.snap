@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`lib injectDependencies should add constants 1`] = `
+exports[`lib injectDependencies should add globals 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 
-let answer = 42;
+let theAnswer = 42;
 
 const answer = 42
 
@@ -12,16 +12,31 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
 `;
 
-exports[`lib injectDependencies should add constants and dependencies 1`] = `
+exports[`lib injectDependencies should add globals and dependencies 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 let _ = require('lodash');
-let answer = 42;
+let theAnswer = 42;
 
 const answer = 42
 
 console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
+`;
+
+exports[`lib injectDependencies should interpolate functions, arrays, objets and strings properly 1`] = `
+"require('source-map-support').install()
+// snippet dependencies
+
+let add = (a, b) => a + b;
+let message = 'hello world';
+let foo = { foo: 'bar' };
+let fruits = ['orange', 'apple'];
+
+const answer = 42
+
+console.log(answer)
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
 `;
 
 exports[`lib injectDependencies should not add a variable declaration when dependencies map values are falsy 1`] = `

@@ -60,6 +60,13 @@ You can configure `chimi` using a configuration file, it might be a JSON or Java
     "./config": "config",
     "es6-promise: ""
   },
+  "globals": {
+    "answer": 42,
+    "add": "(a, b) => a + b",
+    "message": "'hello world'",
+    "fruits": "['orange', 'apple']",
+    "config": "{ port: 8080 }",
+  },
   "file": "readme.md",
   "timeout": 5000
 }
@@ -82,6 +89,35 @@ require('es6-promise')
 ```
 
 These dependencies will be added to your snippet before running it so you don't have to do it on every snippet.
+
+`globals`: `object`
+
+A list of variable declarations to add on each snippet. Each key represents the variable name and the value is, well, the value.
+
+The globals in the example will generate these declarations:
+```js
+let answer  = 42
+let add     = (a, b) => a + b
+let message = 'hello world'
+let fruits  = ['orange', 'apple']
+let port    = { port: 8080 }
+```
+
+**NOTE**: _strings must be quoted_. E.g. consider the following example.
+
+```
+{
+  "globals": {
+    "wrong": "hello world"
+    "right": "'hello world'"
+  }
+}
+```
+
+```js
+let wrong = hello world
+let right = 'hello world'
+```
 
 `file`: `string`
 

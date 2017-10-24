@@ -23,6 +23,9 @@ const buildRequireExpression = R.ifElse(
   simpleRequire
 )
 
+// buildAssignementExpression :: String -> String -> String
+const buildAssignementExpression = (key, value) => `let ${key} = ${value}`
+
 // listDependencies :: Object -> String
 const listDependencies = deps =>
   Object.keys(deps)
@@ -30,12 +33,20 @@ const listDependencies = deps =>
     .map(r => r + ';')
     .join('\n')
 
-const generateSourceMaps = (code, dependencies) => {
+// listGlobals :: Object -> String
+const listGlobals = globals =>
+  Object.keys(globals)
+    .map(key => buildAssignementExpression(key, globals[key]))
+    .map(r => r + ';')
+    .join('\n')
+
+const generateSourceMaps = (code, dependencies, globals) => {
   const decoratedCodeFirstLine =
     1 +
     1 + // require source-map-suppor
     1 + // comment
     dependencies.split('\n').length + // dependencies
+    globals.split('\n').length + // globals
     1 // empty line
 
   const codeLinesCount = code.split('\n').length
@@ -63,10 +74,11 @@ const generateSourceMaps = (code, dependencies) => {
   return map.toString()
 }
 
-// injectDependencies :: Object -> String -> String
-const injectDependencies = (deps, code) => {
-  const dependencies = listDependencies(deps || [])
-  const sourceMaps = generateSourceMaps(code, dependencies)
+// injectDependencies :: Object -> Object -> String -> String
+const injectDependencies = (deps, globals, code) => {
+  const dependencies = listDependencies(deps || {})
+  const globalsStr = listGlobals(globals || {})
+  const sourceMaps = generateSourceMaps(code, dependencies, globalsStr)
   const sourceMapsBase64 = new Buffer(sourceMaps).toString('base64')
 
   const sourceMapsInline = `//# sourceMappingURL=data:application/json;charset=utf-8;base64,${sourceMapsBase64}`
@@ -75,6 +87,7 @@ const injectDependencies = (deps, code) => {
     "require('source-map-support').install()",
     '// snippet dependencies',
     dependencies,
+    globalsStr,
     '',
     code,
     sourceMapsInline,
@@ -94,18 +107,21 @@ const traverseFiles = timeout => snippets =>
 
 const mapWithIndex = R.addIndex(S.map)
 
-// normalizeSnippets :: Object -> [SnippetData] -> [Snippet]
-const normalizeSnippets = deps =>
+// normalizeSnippets :: Object -> Object -> [SnippetData] -> [Snippet]
+const normalizeSnippets = (deps, globals) =>
   mapWithIndex(({ value, meta }, id) => ({
-    value: injectDependencies(deps, value),
+    value: injectDependencies(deps, globals, value),
     meta,
     id,
   }))
 
-// normalizeFiles :: Object -> [File] -> [FileN]
-const normalizeFiles = deps =>
+// normalizeFiles :: Object -> Object -> [File] -> [FileN]
+const normalizeFiles = (deps, globals) =>
   S.map(
-    S.compose(R.evolve({ snippets: normalizeSnippets(deps) }), R.omit(['lang']))
+    S.compose(
+      R.evolve({ snippets: normalizeSnippets(deps, globals) }),
+      R.omit(['lang'])
+    )
   )
 
 // matches "(skip)"with any amount of spaces between the whitespace
@@ -122,12 +138,12 @@ const skip = S.map(R.evolve({ snippets: S.filter(matchNoSkip) }))
 // GlobPattern :: String
 // @link: https://github.com/isaacs/node-glob#glob-primer
 
-// taskOfSnippets :: Object -> Int -> GlobPattern -> Future([FileResult])
-const taskOfSnippets = (dependencies, timeout, glob) =>
+// taskOfSnippets :: Object -> Object -> Int -> GlobPattern -> Future([FileResult])
+const taskOfSnippets = (dependencies, globals, timeout, glob) =>
   S.pipe(
     [
       S.map(skip),
-      S.map(normalizeFiles(dependencies)),
+      S.map(normalizeFiles(dependencies, globals)),
       S.chain(traverseFiles(timeout)),
     ],
     taskify(extract)(glob, ['js', 'javascript'])

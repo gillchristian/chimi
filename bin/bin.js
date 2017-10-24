@@ -38,4 +38,10 @@ const config = readConfig()
 
 const file = cli.flags.file || config.file
 
-runner(config.dependencies, config.timeout, file, cli.flags.silent)
+runner(
+  config.dependencies,
+  config.globals,
+  config.timeout,
+  file,
+  cli.flags.silent
+)

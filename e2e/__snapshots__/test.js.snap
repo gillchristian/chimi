@@ -17,6 +17,23 @@ Output
 "
 `;
 
+exports[`e2e tests should run 02-use-globals as expected 1`] = `
+"
+Output
+
+----- README.md ----- 
+
+--- Snippet #1 ---
+42
+
+
+ PASS  0-README.md
+
+  Files: 1
+  Snippets succeded: 1
+"
+`;
+
 exports[`e2e tests should run 03-multiple-files as expected 1`] = `
 "
 Output
@@ -88,7 +105,7 @@ ReferenceError: answer is not defined
     at Function.Module._load (module.js:500:3)
     at Function.Module.runMain (module.js:665:10)
     at startup (bootstrap_node.js:187:16)
-    at bootstrap_node.js:607:3
+    at bootstrap_node.js:608:3
 
 
  FAIL  0-README.md

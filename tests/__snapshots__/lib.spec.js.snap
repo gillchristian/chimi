@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`lib injectDependencies should not add a variable declaration when dependencies map values are falsy 1`] = `
+exports[`lib injectDependencies should add globals 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
-require('./for-the-side-effects');
-require('es6-promise');
+
+let theAnswer = 42;
 
 const answer = 42
 
@@ -12,28 +12,51 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
 `;
 
+exports[`lib injectDependencies should add globals and dependencies 1`] = `
+"require('source-map-support').install()
+// snippet dependencies
+let _ = require('lodash');
+let theAnswer = 42;
+
+const answer = 42
+
+console.log(answer)
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
+`;
+
+exports[`lib injectDependencies should interpolate functions, arrays, objets and strings properly 1`] = `
+"require('source-map-support').install()
+// snippet dependencies
+
+let add = (a, b) => a + b;
+let message = 'hello world';
+let foo = { foo: 'bar' };
+let fruits = ['orange', 'apple'];
+
+const answer = 42
+
+console.log(answer)
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
+`;
+
+exports[`lib injectDependencies should not add a variable declaration when dependencies map values are falsy 1`] = `
+"require('source-map-support').install()
+// snippet dependencies
+require('./for-the-side-effects');
+require('es6-promise');
+
+
+const answer = 42
+
+console.log(answer)
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
+`;
+
 exports[`lib injectDependencies should not change snippet indentation 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 
 
-const foo = {
-  bar: \\"bar\\"
-};
-
-Promise.resolve(foo)
-  .then(({ bar }) => bar)
-  .then(bar => {
-    console.log(bar);
-  });
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJmaWxlIjoiL2RlY29yYXRlZC1zbmlwcGV0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgZm9vID0ge1xuICBiYXI6IFwiYmFyXCJcbn07XG5cblByb21pc2UucmVzb2x2ZShmb28pXG4gIC50aGVuKCh7IGJhciB9KSA9PiBiYXIpXG4gIC50aGVuKGJhciA9PiB7XG4gICAgY29uc29sZS5sb2coYmFyKTtcbiAgfSk7Il19"
-`;
-
-exports[`lib injectDependencies should not change snippet indentation 2`] = `
-"require('source-map-support').install()
-// snippet dependencies
-let _ = require('lodash');
-let lib = require('./lib');
 
 const foo = {
   bar: \\"bar\\"
@@ -47,15 +70,35 @@ Promise.resolve(foo)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGZvbyA9IHtcbiAgYmFyOiBcImJhclwiXG59O1xuXG5Qcm9taXNlLnJlc29sdmUoZm9vKVxuICAudGhlbigoeyBiYXIgfSkgPT4gYmFyKVxuICAudGhlbihiYXIgPT4ge1xuICAgIGNvbnNvbGUubG9nKGJhcik7XG4gIH0pOyJdfQ=="
 `;
 
+exports[`lib injectDependencies should not change snippet indentation 2`] = `
+"require('source-map-support').install()
+// snippet dependencies
+let _ = require('lodash');
+let lib = require('./lib');
+
+
+const foo = {
+  bar: \\"bar\\"
+};
+
+Promise.resolve(foo)
+  .then(({ bar }) => bar)
+  .then(bar => {
+    console.log(bar);
+  });
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBmb28gPSB7XG4gIGJhcjogXCJiYXJcIlxufTtcblxuUHJvbWlzZS5yZXNvbHZlKGZvbylcbiAgLnRoZW4oKHsgYmFyIH0pID0+IGJhcilcbiAgLnRoZW4oYmFyID0+IHtcbiAgICBjb25zb2xlLmxvZyhiYXIpO1xuICB9KTsiXX0="
+`;
+
 exports[`lib injectDependencies should only add the source maps code when no dependencies are passed 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 
 
+
 const answer = 42
 
 console.log(answer)
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQTtBQUNBO0FBQ0EiLCJmaWxlIjoiL2RlY29yYXRlZC1zbmlwcGV0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgYW5zd2VyID0gNDJcblxuY29uc29sZS5sb2coYW5zd2VyKSJdfQ=="
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
 `;
 
 exports[`lib injectDependencies should prepend requires with variable declarations to the input 1`] = `
@@ -63,10 +106,11 @@ exports[`lib injectDependencies should prepend requires with variable declaratio
 // snippet dependencies
 let _ = require('lodash');
 
+
 const answer = 42
 
 console.log(answer)
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQTtBQUNBO0FBQ0EiLCJmaWxlIjoiL2RlY29yYXRlZC1zbmlwcGV0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgYW5zd2VyID0gNDJcblxuY29uc29sZS5sb2coYW5zd2VyKSJdfQ=="
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
 `;
 
 exports[`lib injectDependencies should prepend requires with variable declarations to the input 2`] = `
@@ -75,10 +119,11 @@ exports[`lib injectDependencies should prepend requires with variable declaratio
 let _ = require('lodash');
 let trae = require('trae');
 
+
 const answer = 42
 
 console.log(answer)
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
 `;
 
 exports[`lib injectDependencies should work for local dependencies 1`] = `
@@ -87,8 +132,9 @@ exports[`lib injectDependencies should work for local dependencies 1`] = `
 let lib = require('./lib');
 let bar = require('../foo/bar');
 
+
 const answer = 42
 
 console.log(answer)
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBIiwiZmlsZSI6Ii9kZWNvcmF0ZWQtc25pcHBldC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGFuc3dlciA9IDQyXG5cbmNvbnNvbGUubG9nKGFuc3dlcikiXX0="
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zbmlwcGV0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
 `;

@@ -6,6 +6,7 @@
     "chimi": "./bin/bin.js"
   },
   "scripts": {
+    "dev": "babel --watch src -d lib",
     "build": "babel src/ -d lib/ && yarn format",
     "prettier": "prettier --no-semi --single-quote --trailing-comma es5 --parser flow",
     "format": "yarn prettier --write '**/*.js'",

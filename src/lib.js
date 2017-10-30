@@ -41,7 +41,14 @@ const listGlobals = globals =>
     .map(appendSemi)
     .join('\n')
 
-const generateSourceMaps = (code, dependencies, globals) => {
+const generateSourceMaps = (
+  file = 'snippet.js',
+  code,
+  position,
+  dependencies,
+  globals
+) => {
+  const source = process.env.NODE_ENV === 'dev' ? `/${file}` : file
   const decoratedCodeFirstLine =
     1 +
     1 + // require source-map-suppor
@@ -63,39 +70,46 @@ const generateSourceMaps = (code, dependencies, globals) => {
         line: decoratedCodeFirstLine + i,
         column: 0,
       },
-      source: '/snippet.js',
       original: {
-        line: i + 1,
+        line: position.start.line + i + 1,
         column: 0,
       },
+      source,
     })
   }
 
-  map.setSourceContent('/snippet.js', code)
+  map.setSourceContent(source, code)
 
   return map.toString()
 }
 
+const sourceMapsPrefix =
+  '//# sourceMappingURL=data:application/json;charset=utf-8;base64,'
+
 // injectDependencies :: Object -> Object -> String -> String
-const injectDependencies = (deps, globals, code) => {
-  const dependencies = listDependencies(deps || [])
+const injectDependencies = (file, code, position, deps, globals) => {
+  const depsStr = listDependencies(deps || [])
   const globalsStr = listGlobals(globals || {})
-  const sourceMaps = generateSourceMaps(code, dependencies, globalsStr)
+  const sourceMaps = generateSourceMaps(
+    file,
+    code,
+    position,
+    depsStr,
+    globalsStr
+  )
   const sourceMapsBase64 = Buffer.from(sourceMaps).toString('base64')
 
-  const sourceMapsInline = `//# sourceMappingURL=data:application/json;charset=utf-8;base64,${sourceMapsBase64}`
+  const sourceMapsInline = `${sourceMapsPrefix}${sourceMapsBase64}`
 
-  const generatedCode = [
+  return [
     "require('source-map-support').install()",
     '// snippet dependencies',
-    dependencies,
+    depsStr,
     globalsStr,
     '',
     code,
     sourceMapsInline,
   ].join('\n')
-
-  return generatedCode
 }
 
 // SnippetData :: { value: String, meta: String, ... }
@@ -110,21 +124,19 @@ const traverseFiles = timeout => snippets =>
 const mapWithIndex = R.addIndex(S.map)
 
 // normalizeSnippets :: Object -> Object -> [SnippetData] -> [Snippet]
-const normalizeSnippets = (deps, globals) =>
-  mapWithIndex(({ value, meta }, id) => ({
-    value: injectDependencies(deps, globals, value),
+const normalizeSnippets = (file, deps, globals) =>
+  mapWithIndex(({ value, meta, position }, index) => ({
+    id: index,
+    value: injectDependencies(file, value, position, deps, globals),
     meta,
-    id,
   }))
 
 // normalizeFiles :: Object -> Object -> [File] -> [FileN]
 const normalizeFiles = (deps, globals) =>
-  S.map(
-    S.compose(
-      R.evolve({ snippets: normalizeSnippets(deps, globals) }),
-      R.omit(['lang'])
-    )
-  )
+  S.map(({ file, snippets }) => ({
+    file,
+    snippets: normalizeSnippets(file, deps, globals)(snippets),
+  }))
 
 // matches "(skip)"with any amount of spaces between the whitespace
 const skipRegex = /\(\s*skip\s*\)/

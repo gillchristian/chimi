@@ -22,8 +22,12 @@ describe('lib', () => {
       console.log(answer)
     `
 
+    const position = {
+      start: { line: 0, column: 0 },
+    }
+
     it('should add source maps but no dependencies', () => {
-      const result = injectDependencies([], {}, code)
+      const result = injectDependencies('README.md', code, position, [], {})
 
       expect(result).toMatchSnapshot()
     })
@@ -40,7 +44,13 @@ describe('lib', () => {
             console.log(bar);
           });
       `
-      let result = injectDependencies([], {}, withIndentation)
+      let result = injectDependencies(
+        'README.md',
+        withIndentation,
+        position,
+        [],
+        {}
+      )
 
       expect(result).toMatchSnapshot()
 
@@ -54,7 +64,13 @@ describe('lib', () => {
           module: './lib',
         },
       ]
-      result = injectDependencies(dependencies, {}, withIndentation)
+      result = injectDependencies(
+        'README.md',
+        withIndentation,
+        position,
+        dependencies,
+        {}
+      )
 
       expect(result).toMatchSnapshot()
     })
@@ -66,7 +82,13 @@ describe('lib', () => {
           module: 'lodash',
         },
       ]
-      let result = injectDependencies(dependencies, {}, code)
+      let result = injectDependencies(
+        'README.md',
+        code,
+        position,
+        dependencies,
+        {}
+      )
 
       expect(result).toMatchSnapshot()
 
@@ -77,7 +99,7 @@ describe('lib', () => {
         },
         'trae',
       ]
-      result = injectDependencies(dependencies, {}, code)
+      result = injectDependencies('README.md', code, position, dependencies, {})
 
       expect(result).toMatchSnapshot()
     })
@@ -93,7 +115,13 @@ describe('lib', () => {
           module: '../foo/bar',
         },
       ]
-      const result = injectDependencies(dependencies, {}, code)
+      const result = injectDependencies(
+        'README.md',
+        code,
+        position,
+        dependencies,
+        {}
+      )
 
       expect(result).toMatchSnapshot()
     })
@@ -107,7 +135,13 @@ describe('lib', () => {
           module: 'es6-promise',
         },
       ]
-      const result = injectDependencies(dependencies, {}, code)
+      const result = injectDependencies(
+        'README.md',
+        code,
+        position,
+        dependencies,
+        {}
+      )
 
       expect(result).toMatchSnapshot()
     })
@@ -116,7 +150,13 @@ describe('lib', () => {
       const globals = {
         theAnswer: 42,
       }
-      const result = injectDependencies([], globals, code)
+      const result = injectDependencies(
+        'README.md',
+        code,
+        position,
+        [],
+        globals
+      )
 
       expect(result).toMatchSnapshot()
     })
@@ -131,7 +171,13 @@ describe('lib', () => {
       const globals = {
         theAnswer: 42,
       }
-      const result = injectDependencies(dependencies, globals, code)
+      const result = injectDependencies(
+        'README.md',
+        code,
+        position,
+        dependencies,
+        globals
+      )
 
       expect(result).toMatchSnapshot()
     })
@@ -143,7 +189,13 @@ describe('lib', () => {
         foo: "{ foo: 'bar' }",
         fruits: "['orange', 'apple']",
       }
-      const result = injectDependencies([], globals, code)
+      const result = injectDependencies(
+        'README.md',
+        code,
+        position,
+        [],
+        globals
+      )
 
       expect(result).toMatchSnapshot()
     })

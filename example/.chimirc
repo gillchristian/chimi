@@ -1,7 +1,10 @@
 {
-  "dependencies": {
-    "./add": "add",
-    "trae": "trae"
-  },
+  "dependencies": [
+    {
+      "module": "./add",
+      "name": "add"
+    },
+    "trae"
+  ],
   "file": "readme.md"
 }

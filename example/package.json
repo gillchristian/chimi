@@ -10,10 +10,13 @@
     "trae": "^1.4.1"
   },
   "chimi": {
-    "dependencies": {
-      "./add": "add",
-      "trae": "trae"
-    },
+    "dependencies": [
+      {
+        "name": "add",
+        "module": "./add"
+      },
+      "trae"
+    ],
     "file": "readme.md"
   }
 }

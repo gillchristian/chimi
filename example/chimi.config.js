@@ -1,7 +1,10 @@
 module.exports = {
-  dependencies: {
-    './add': 'add',
-    trae: 'trae',
-  },
-  file: 'readme.md',
+  dependencies: [
+    {
+      module: './add',
+      name: 'add'
+    },
+    'trae'
+  ],
+  file: 'readme.md'
 }

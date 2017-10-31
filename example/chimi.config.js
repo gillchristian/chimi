@@ -2,9 +2,9 @@ module.exports = {
   dependencies: [
     {
       module: './add',
-      name: 'add'
+      name: 'add',
     },
-    'trae'
+    'trae',
   ],
-  file: 'readme.md'
+  file: 'readme.md',
 }

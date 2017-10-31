@@ -34,8 +34,6 @@ const cli = meow(msg, {
 
 const config = readConfig()
 
-console.log(config)
-
 const file = cli.flags.file || config.file
 
 runner(file, config, cli.flags)

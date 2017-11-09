@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`lib injectDependencies should add globals 1`] = `
+exports[`src/process-snippets injectDependencies should add globals 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 
@@ -12,7 +12,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
 `;
 
-exports[`lib injectDependencies should add globals and dependencies 1`] = `
+exports[`src/process-snippets injectDependencies should add globals and dependencies 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 const _ = require('lodash');
@@ -24,7 +24,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
 `;
 
-exports[`lib injectDependencies should add requires with no declaration when the name is missing 1`] = `
+exports[`src/process-snippets injectDependencies should add requires with no declaration when the name is missing 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 require('./for-the-side-effects');
@@ -37,7 +37,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBO0FBQ0EiLCJmaWxlIjoiL2RlY29yYXRlZC1zbmlwcGV0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgYW5zd2VyID0gNDJcblxuY29uc29sZS5sb2coYW5zd2VyKSJdfQ=="
 `;
 
-exports[`lib injectDependencies should add source maps but no dependencies 1`] = `
+exports[`src/process-snippets injectDependencies should add source maps but no dependencies 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 
@@ -49,7 +49,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
 `;
 
-exports[`lib injectDependencies should interpolate functions, arrays, objets and strings properly 1`] = `
+exports[`src/process-snippets injectDependencies should interpolate functions, arrays, objets and strings properly 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 
@@ -64,7 +64,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
 `;
 
-exports[`lib injectDependencies should not change snippet indentation 1`] = `
+exports[`src/process-snippets injectDependencies should not change snippet indentation 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 
@@ -82,7 +82,7 @@ Promise.resolve(foo)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBmb28gPSB7XG4gIGJhcjogXCJiYXJcIlxufTtcblxuUHJvbWlzZS5yZXNvbHZlKGZvbylcbiAgLnRoZW4oKHsgYmFyIH0pID0+IGJhcilcbiAgLnRoZW4oYmFyID0+IHtcbiAgICBjb25zb2xlLmxvZyhiYXIpO1xuICB9KTsiXX0="
 `;
 
-exports[`lib injectDependencies should not change snippet indentation 2`] = `
+exports[`src/process-snippets injectDependencies should not change snippet indentation 2`] = `
 "require('source-map-support').install()
 // snippet dependencies
 const _ = require('lodash');
@@ -101,7 +101,7 @@ Promise.resolve(foo)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJmaWxlIjoiL2RlY29yYXRlZC1zbmlwcGV0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgZm9vID0ge1xuICBiYXI6IFwiYmFyXCJcbn07XG5cblByb21pc2UucmVzb2x2ZShmb28pXG4gIC50aGVuKCh7IGJhciB9KSA9PiBiYXIpXG4gIC50aGVuKGJhciA9PiB7XG4gICAgY29uc29sZS5sb2coYmFyKTtcbiAgfSk7Il19"
 `;
 
-exports[`lib injectDependencies should prepend requires with variable declarations to the snippet code 1`] = `
+exports[`src/process-snippets injectDependencies should prepend requires with variable declarations to the snippet code 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 const _ = require('lodash');
@@ -113,7 +113,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQ0E7QUFDQSIsImZpbGUiOiIvZGVjb3JhdGVkLXNuaXBwZXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBhbnN3ZXIgPSA0MlxuXG5jb25zb2xlLmxvZyhhbnN3ZXIpIl19"
 `;
 
-exports[`lib injectDependencies should prepend requires with variable declarations to the snippet code 2`] = `
+exports[`src/process-snippets injectDependencies should prepend requires with variable declarations to the snippet code 2`] = `
 "require('source-map-support').install()
 // snippet dependencies
 const _ = require('lodash');
@@ -126,7 +126,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBO0FBQ0EiLCJmaWxlIjoiL2RlY29yYXRlZC1zbmlwcGV0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgYW5zd2VyID0gNDJcblxuY29uc29sZS5sb2coYW5zd2VyKSJdfQ=="
 `;
 
-exports[`lib injectDependencies should work for local dependencies 1`] = `
+exports[`src/process-snippets injectDependencies should work for local dependencies 1`] = `
 "require('source-map-support').install()
 // snippet dependencies
 const lib = require('./lib');
@@ -139,7 +139,7 @@ console.log(answer)
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJFQURNRS5tZCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBO0FBQ0EiLCJmaWxlIjoiL2RlY29yYXRlZC1zbmlwcGV0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgYW5zd2VyID0gNDJcblxuY29uc29sZS5sb2coYW5zd2VyKSJdfQ=="
 `;
 
-exports[`lib listDependencies should list dependencies in different types 1`] = `
+exports[`src/process-snippets listDependencies should list dependencies in different types 1`] = `
 "const trae = require('trae');
 require('es6-promise');
 const _ = require('lodash');

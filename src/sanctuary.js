@@ -1,7 +1,6 @@
 const R = require('ramda')
 const { create, env } = require('sanctuary')
 const { NullaryType } = require('sanctuary-def')
-const flutureEnv = require('fluture-sanctuary-types').env
 
 const isString = R.is(String)
 const isObject = R.is(Object)
@@ -24,7 +23,7 @@ const chimiDependency = NullaryType('chimi/Dependency', '#', isDep)
 
 const S = create({
   checkTypes: true,
-  env: env.concat(flutureEnv, [chimiDependency]),
+  env: env.concat([chimiDependency]),
 })
 
 module.exports = S

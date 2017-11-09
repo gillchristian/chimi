@@ -1,11 +1,9 @@
 const R = require('ramda')
-const Future = require('fluture')
 const { extract } = require('chipa')
 const { SourceMapGenerator } = require('source-map')
 
 // sanctuary with Fluture types added
 const S = require('./sanctuary')
-const { taskify } = require('./utils')
 const runSnippets = require('./run-snippet')
 
 const appendSemi = r => `${r};`
@@ -117,9 +115,9 @@ const injectDependencies = (file, code, position, deps, globals) => {
 // File  :: { file: String, snippets: [SnippetData], ... }
 // FileN :: { file: String, snippets: [Snippet] }
 
-// traverseFiles :: Int -> [FileN] -> Future([FileResult])
+// traverseFiles :: Int -> [FileN] -> Promise([FileResult])
 const traverseFiles = timeout => snippets =>
-  S.traverse(Future, runSnippets(timeout), snippets)
+  Promise.all(snippets.map(runSnippets(timeout)))
 
 const mapWithIndex = R.addIndex(S.map)
 
@@ -152,16 +150,12 @@ const skip = S.map(R.evolve({ snippets: S.filter(matchNoSkip) }))
 // GlobPattern :: String
 // @link: https://github.com/isaacs/node-glob#glob-primer
 
-// taskOfSnippets :: Object -> Object -> Int -> GlobPattern -> Future([FileResult])
+// taskOfSnippets :: Object -> Object -> Int -> GlobPattern -> Promise([FileResult])
 const taskOfSnippets = ({ dependencies, globals, timeout }, glob) =>
-  S.pipe(
-    [
-      S.chain(Future.encase(skip)),
-      S.chain(Future.encase(normalizeFiles(dependencies, globals))),
-      S.chain(traverseFiles(timeout)),
-    ],
-    taskify(extract)(glob, ['js', 'javascript'])
-  )
+  extract(glob, ['js', 'javascript'])
+    .then(skip)
+    .then(normalizeFiles(dependencies, globals))
+    .then(traverseFiles(timeout))
 
 module.exports = {
   injectDependencies,

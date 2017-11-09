@@ -5,7 +5,6 @@ const fs = require('fs')
 
 const debug = require('debug')('chimi')
 const R = require('ramda')
-const Future = require('fluture')
 
 // validateResult :: Int -> String -> String -> Bool
 const validateResult = (code, signal, stderr) =>
@@ -14,7 +13,7 @@ const validateResult = (code, signal, stderr) =>
 // Result :: { id: String, ok: Bool, code: Int, signal: String, stdout: String, stderr: String }
 // FileResult :: { file: String, results: [Result] }
 
-// runSnippet :: Int -> Snippet -> Future(Result)
+// runSnippet :: Int -> Snippet -> Promise(Result)
 function runSnippetUncurried(timeout, { value, id }) {
   const fileName = `snippet-${Math.random()}.js`
   debug('Starting snippet %o', id)
@@ -62,12 +61,12 @@ function runSnippetUncurried(timeout, { value, id }) {
 
 const runSnippet = R.curry(runSnippetUncurried)
 
-// runSnippets :: Int -> FileN -> Future(FileResult)
+// runSnippets :: Int -> FileN -> Promise(FileResult)
 const runSnippets = (timeout, { file, snippets }) => {
   debug('Running snippets from file %o', file)
 
   // Run snippets sequentially
-  const whenSnippetsResults = snippets
+  return snippets
     .reduce(
       (promise, snippet) =>
         promise.then(results =>
@@ -80,8 +79,6 @@ const runSnippets = (timeout, { file, snippets }) => {
       return results
     })
     .then(results => ({ file, snippets: results }))
-
-  return Future.tryP(() => whenSnippetsResults)
 }
 
 module.exports = R.curry(runSnippets)

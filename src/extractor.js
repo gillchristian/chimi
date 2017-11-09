@@ -3,7 +3,6 @@ const { extract } = require('chipa')
 
 // sanctuary with Fluture types added
 const S = require('./sanctuary')
-const runSnippets = require('./run-snippet')
 
 const { processSnippet } = require('./process-snippet')
 
@@ -43,14 +42,12 @@ const skip = S.map(R.evolve({ snippets: S.filter(matchNoSkip) }))
 // GlobPattern :: String
 // @link: https://github.com/isaacs/node-glob#glob-primer
 
-// taskOfSnippets :: Object -> Object -> Int -> GlobPattern -> Promise([FileResult])
-const taskOfSnippets = ({ dependencies, globals, timeout }, glob) =>
+// extractSnippets :: Object -> Object -> Int -> GlobPattern -> Promise([FileN])
+const extractSnippets = ({ dependencies, globals }, glob) =>
   extract(glob, ['js', 'javascript'])
     .then(skip)
     .then(normalizeFiles(dependencies, globals))
-    .then(R.map(runSnippets(timeout)))
-    .then(a => Promise.all(a))
 
 module.exports = {
-  taskOfSnippets,
+  extractSnippets,
 }

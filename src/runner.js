@@ -1,6 +1,6 @@
 const debug = require('debug')('chimi')
 
-const { taskOfSnippets } = require('./lib')
+const { taskOfSnippets } = require('./extractor')
 const { createSpinner, reportResults } = require('./reporter')
 
 function runner(glob, config, { silent }) {

@@ -1,4 +1,3 @@
-const R = require('ramda')
 const { SourceMapGenerator } = require('source-map')
 
 // sanctuary with Fluture types added

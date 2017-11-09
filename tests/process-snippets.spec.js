@@ -1,5 +1,8 @@
 const { stripIndent } = require('common-tags')
-const { injectDependencies, listDependencies } = require('../lib/process-snippet')
+const {
+  injectDependencies,
+  listDependencies,
+} = require('../lib/process-snippet')
 
 describe('src/process-snippets', () => {
   describe('listDependencies', () => {

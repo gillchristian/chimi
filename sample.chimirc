@@ -13,7 +13,7 @@
     "fruits": "['orange', 'apple']",
     "config": "{ port: 8080 }"
   },
-  "alias": {
+  "aliases": {
     "my-lib": "./dist/my-lib"
   },
   "timeout": 5000
